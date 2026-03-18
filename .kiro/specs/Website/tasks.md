@@ -98,7 +98,8 @@ At this stage, tenant provisioning is manual — you receive the notification an
 
 **API contract**: See `.kiro/specs/Website/wireframes/trial-signup.md` for full request/response specs.
 
-- [ ] Define validation rules and error states
+- [x] Define validation rules and error states
+      See: .kiro\specs\Website\wireframes\trial-signup.md (Validation Rules & Error States section)
 - [ ] Email confirmation / welcome email — who sends it?
       AWS SNS
 
@@ -110,20 +111,56 @@ Your trial signup wireframe already has this documented for three endpoints: /ap
 ## 4. GA4 Event Tracking Plan
 
 **Priority**: 🟡 During development  
-**Status**: [ ] Not started
+**Status**: [x] Defined
 
 Define which user interactions to track beyond basic pageviews.
 
-- [ ] Trial signup form submission (conversion event)
-- [ ] CTA button clicks (hero CTA, pricing CTA, nav CTA)
-- [ ] Pricing tier toggle / selection
-- [ ] Demo video play (if video exists at launch)
-- [ ] FAQ accordion opens
-- [ ] Scroll depth on homepage
-- [ ] Outbound link clicks (to myAdmin app)
-- [ ] Language switcher usage
+- [x] Trial signup form submission (conversion event)
+- [x] CTA button clicks (hero CTA, pricing CTA, nav CTA)
+- [x] Pricing tier toggle / selection
+- [x] Demo video play (if video exists at launch)
+- [x] FAQ accordion opens
+- [x] Scroll depth on homepage
+- [x] Outbound link clicks (to myAdmin app)
+- [x] Language switcher usage
 
-**Output**: Event tracking spreadsheet (event name, trigger, parameters)
+### Event Tracking Specification
+
+All events use `gtag('event', ...)` and only fire when analytics consent is granted.
+
+| Event Name             | Trigger                          | Parameters                                                                                 | Notes                              |
+| ---------------------- | -------------------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------- |
+| `sign_up_start`        | User focuses first form field    | `method: "email"`                                                                          | Funnel entry point                 |
+| `sign_up_submit`       | Form submitted (before API call) | `method: "email"`                                                                          | Includes failed validations        |
+| `sign_up_complete`     | API returns 201 success          | `method: "email"`                                                                          | 🔴 Primary conversion event        |
+| `sign_up_verified`     | Email verification completed     | —                                                                                          | 🔴 Secondary conversion event      |
+| `sign_up_social_click` | Google/Microsoft button clicked  | `method: "google" \| "microsoft"`                                                          | UI only at launch                  |
+| `cta_click`            | Any CTA button clicked           | `location: "hero" \| "pricing" \| "nav" \| "cta_banner" \| "footer"`, `label: button text` |                                    |
+| `pricing_toggle`       | Monthly/Annual toggle switched   | `value: "monthly" \| "annual"`                                                             |                                    |
+| `pricing_tier_click`   | Plan CTA clicked                 | `tier: "starter" \| "professional" \| "enterprise"`, `billing: "monthly" \| "annual"`      |                                    |
+| `video_play`           | Demo video play button clicked   | `video_title: string`                                                                      | Deferred if no video at launch     |
+| `faq_open`             | FAQ accordion item expanded      | `question: first 50 chars of question`, `page: "home" \| "pricing"`                        |                                    |
+| `scroll_depth`         | User scrolls past 25/50/75/100%  | `percent: 25 \| 50 \| 75 \| 100`, `page: path`                                             | Homepage only at launch            |
+| `outbound_click`       | Click on link to myAdmin app     | `url: destination URL`                                                                     | app.myadmin.nl links               |
+| `language_switch`      | Language changed via dropdown    | `from: "nl" \| "en"`, `to: "nl" \| "en"`                                                   |                                    |
+| `cookie_consent`       | User makes consent choice        | `action: "accept_all" \| "reject_all" \| "custom"`, `analytics: true \| false`             | Fires before GA4 loads if rejected |
+
+**GA4 Configuration:**
+
+- Mark `sign_up_complete` and `sign_up_verified` as conversion events in GA4 Console
+- Enable Enhanced Measurement for: page views, scrolls (disabled — custom), outbound clicks (disabled — custom), site search
+- Data stream: Web, domain `myadmin.jabaki.nl`
+- Data retention: 14 months
+- IP anonymization: enabled (default in GA4)
+- Google Signals: disabled (privacy)
+
+**Implementation:**
+
+- All events go through a `trackEvent(name, params)` wrapper in `lib/analytics.ts`
+- The wrapper checks consent state before firing
+- Events are typed with TypeScript for consistency
+
+**Output**: Event tracking spreadsheet (above) — implement during Task 8 of phase1-tasks.md
 
 ---
 

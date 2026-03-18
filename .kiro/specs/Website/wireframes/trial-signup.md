@@ -78,6 +78,85 @@ Background: Off-white (#F8FAFC), full viewport height (min-height)
 | How did you hear about us? | select | — | | Options: "Google search", "Social media", "Friend/colleague", "Blog/article", "Podcast", "Other" |
 | Terms agreement | checkbox | ✓ | Must be checked | Links to Terms and Privacy Policy pages |
 
+### Validation Rules & Error States
+
+Validation triggers on blur (per field) and on form submit (all fields). Errors display inline below the field in red (`text-red-600`), with `aria-describedby` linking the error to the input.
+
+**First name:**
+
+| Rule | Regex / Check | Error (EN) | Error (NL) |
+|---|---|---|---|
+| Required | non-empty | "First name is required" | "Voornaam is verplicht" |
+| Min length | `.length >= 2` | "First name must be at least 2 characters" | "Voornaam moet minimaal 2 tekens bevatten" |
+| Max length | `.length <= 50` | "First name must be 50 characters or less" | "Voornaam mag maximaal 50 tekens bevatten" |
+| Valid chars | `/^[a-zA-ZÀ-ÿ\s'-]+$/` | "First name contains invalid characters" | "Voornaam bevat ongeldige tekens" |
+
+**Last name:**
+
+| Rule | Regex / Check | Error (EN) | Error (NL) |
+|---|---|---|---|
+| Required | non-empty | "Last name is required" | "Achternaam is verplicht" |
+| Min length | `.length >= 2` | "Last name must be at least 2 characters" | "Achternaam moet minimaal 2 tekens bevatten" |
+| Max length | `.length <= 50` | "Last name must be 50 characters or less" | "Achternaam mag maximaal 50 tekens bevatten" |
+| Valid chars | `/^[a-zA-ZÀ-ÿ\s'-]+$/` | "Last name contains invalid characters" | "Achternaam bevat ongeldige tekens" |
+
+**Email address:**
+
+| Rule | Regex / Check | Error (EN) | Error (NL) |
+|---|---|---|---|
+| Required | non-empty | "Email address is required" | "E-mailadres is verplicht" |
+| Format | `/^[^\s@]+@[^\s@]+\.[^\s@]+$/` | "Please enter a valid email address" | "Voer een geldig e-mailadres in" |
+| Max length | `.length <= 254` | "Email address is too long" | "E-mailadres is te lang" |
+| Unique (async) | API check on blur (debounced 500ms) | "An account with this email already exists. [Log in instead →]" | "Er bestaat al een account met dit e-mailadres. [Log in →]" |
+
+**Password:**
+
+| Rule | Regex / Check | Error (EN) | Error (NL) |
+|---|---|---|---|
+| Required | non-empty | "Password is required" | "Wachtwoord is verplicht" |
+| Min length | `.length >= 8` | "Password must be at least 8 characters" | "Wachtwoord moet minimaal 8 tekens bevatten" |
+| Max length | `.length <= 128` | "Password must be 128 characters or less" | "Wachtwoord mag maximaal 128 tekens bevatten" |
+| Uppercase | `/[A-Z]/` | "Password must contain at least one uppercase letter" | "Wachtwoord moet minimaal één hoofdletter bevatten" |
+| Number | `/[0-9]/` | "Password must contain at least one number" | "Wachtwoord moet minimaal één cijfer bevatten" |
+
+Password strength indicator (visual bar below field):
+
+| Strength | Criteria | Color | Label (EN) | Label (NL) |
+|---|---|---|---|---|
+| Weak | < 8 chars or missing uppercase/number | Red `#EF4444` | "Weak" | "Zwak" |
+| Fair | 8+ chars, has uppercase + number | Orange `#F59E0B` | "Fair" | "Redelijk" |
+| Good | 10+ chars, uppercase + number + special char | Teal `#0D9488` | "Good" | "Goed" |
+| Strong | 12+ chars, uppercase + number + special char | Green `#22C55E` | "Strong" | "Sterk" |
+
+**Company name (optional):**
+
+| Rule | Regex / Check | Error (EN) | Error (NL) |
+|---|---|---|---|
+| Max length | `.length <= 100` | "Company name must be 100 characters or less" | "Bedrijfsnaam mag maximaal 100 tekens bevatten" |
+
+**Terms agreement:**
+
+| Rule | Check | Error (EN) | Error (NL) |
+|---|---|---|---|
+| Required | `checked === true` | "You must agree to the Terms of Service and Privacy Policy" | "U moet akkoord gaan met de Algemene Voorwaarden en het Privacybeleid" |
+
+**Form-level error states:**
+
+| Scenario | HTTP | Error (EN) | Error (NL) |
+|---|---|---|---|
+| Server error | 500 | "Something went wrong. Please try again." | "Er is iets misgegaan. Probeer het opnieuw." |
+| Rate limited | 429 | "Too many attempts. Please try again in 60 seconds." | "Te veel pogingen. Probeer het over 60 seconden opnieuw." |
+| Network error | — | "No internet connection. Check your network and try again." | "Geen internetverbinding. Controleer uw netwerk en probeer het opnieuw." |
+
+**Validation UX behavior:**
+
+- On blur: validate the field, show error if invalid, show green checkmark if valid
+- On submit: validate all fields, focus the first field with an error, scroll into view if needed
+- Async email check: debounce 500ms after blur, show spinner while checking, then error or checkmark
+- Disable submit button while form is submitting (show spinner)
+- Error messages appear with a subtle slide-down animation (`150ms ease-out`)
+- Errors clear when user starts typing in the field again
+
 ### Layout Notes
 
 - Two-column on desktop: value props left (45%), form right (55%)

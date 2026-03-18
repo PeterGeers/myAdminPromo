@@ -9,8 +9,9 @@ variable "aws_region" {
 }
 
 variable "github_repository" {
-  description = "GitHub repository URL (e.g. https://github.com/org/myAdmin-website)"
+  description = "GitHub repository URL"
   type        = string
+  default     = "https://github.com/PeterGeers/myAdminPromo"
 }
 
 variable "github_access_token" {
