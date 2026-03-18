@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 import "../globals.css";
 
 type Props = {
@@ -63,10 +65,24 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   setRequestLocale(locale);
 
+  const t = await getTranslations({ locale, namespace: "Header" });
+
   return (
     <html lang={locale}>
       <body className="font-sans text-deep-slate bg-off-white antialiased">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-brand-blue focus:px-4 focus:py-2 focus:text-white focus:outline-none"
+          >
+            {t("skipToContent")}
+          </a>
+          <Header locale={locale} />
+          <main id="main-content">
+            {children}
+          </main>
+          <Footer locale={locale} />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

@@ -53,31 +53,31 @@ Reference: wireframes in `.kiro/specs/Website/wireframes/`, brand assets in `.ki
 **Depends on**: Task 1
 **Wireframe**: `wireframes/shared-layout.md`
 
-- [ ] `components/ui/Container.tsx` — max-w-7xl centered wrapper
-- [ ] `components/ui/Button.tsx` — primary (solid), secondary (outline), text variants
-- [ ] `components/layout/Header.tsx` — sticky nav bar
+- [x] `components/ui/Container.tsx` — max-w-7xl centered wrapper
+- [x] `components/ui/Button.tsx` — primary (solid), secondary (outline), text variants
+- [x] `components/layout/Header.tsx` — sticky nav bar
   - Logo (links to homepage)
   - Nav links: Features (scroll anchor), Pricing (route), FAQ (scroll anchor)
   - Blog link (hidden until Phase 2)
   - Language dropdown (NL + EN active, DE/FR/ES/IT/PT shown as "coming soon")
   - CTA button: "Start Free Trial" → `/signup`
   - Scroll shadow on scroll-down
-- [ ] `components/layout/MobileDrawer.tsx` — slide-out hamburger menu
+- [x] `components/layout/MobileDrawer.tsx` — slide-out hamburger menu
   - Slide from right, backdrop overlay
   - Full-width nav links, language selector, CTA button
   - Focus trap, close on Escape
-- [ ] `components/layout/LanguageDropdown.tsx` — shared between header + footer
+- [x] `components/layout/LanguageDropdown.tsx` — shared between header + footer
   - Flag emoji + native language name
   - Active language checkmark
   - "Coming soon" languages disabled
   - Updates URL path prefix + locale cookie
-- [ ] `components/layout/Footer.tsx` — dark footer
+- [x] `components/layout/Footer.tsx` — dark footer
   - White logo variant + tagline
   - 4-column link grid (Product, Company, Legal, Connect)
   - Bottom bar: copyright + language dropdown
   - Responsive: 4-col → 2×2 → stacked
-- [ ] Skip-to-content link (accessibility)
-- [ ] Wire layout into `app/[locale]/layout.tsx`
+- [x] Skip-to-content link (accessibility)
+- [x] Wire layout into `app/[locale]/layout.tsx`
 
 **Output**: Header + footer visible on all pages, responsive across breakpoints, language switching works
 
@@ -92,47 +92,47 @@ Reference: wireframes in `.kiro/specs/Website/wireframes/`, brand assets in `.ki
 
 Build each section as a separate component in `components/sections/`:
 
-- [ ] `HeroSection.tsx`
+- [x] `HeroSection.tsx`
   - Two-column: text left (55%), image/illustration right (45%)
   - H1: "Manage your rentals. Optimize your pricing. Handle your taxes. All in one platform."
   - Sub-headline, primary CTA (Start Free Trial), secondary CTA (Watch Demo or See Features)
   - Trust signal line
   - Platform logos row (Airbnb, Booking.com, Rabobank, ING, Belastingdienst) — grayscale
   - Mobile: stacked, text first
-- [ ] `ProblemSolutionSection.tsx`
+- [x] `ProblemSolutionSection.tsx`
   - Before/After two-column comparison
   - Before: chaotic flow diagram + pain point bullets (muted tones)
   - After: clean unified diagram + benefit bullets (brand colors)
   - Mobile: stacked vertically
-- [ ] `FeatureShowcase.tsx`
+- [x] `FeatureShowcase.tsx`
   - Three tabs: STR Analytics, Financial Administration, Integrated Platform
   - Tab content: feature checklist left, screenshot/mockup right
   - Mobile: horizontal scroll tabs, stacked content
-- [ ] `SocialProofSection.tsx`
+- [x] `SocialProofSection.tsx`
   - Launch with metrics bar only (testimonials deferred)
   - 4 metrics: Automated invoice processing, Streamlined financial workflows, Simplified tax compliance, Built by financial pros
   - Mobile: 2×2 grid
-- [ ] `PricingSection.tsx` (homepage version — compact)
+- [x] `PricingSection.tsx` (homepage version — compact)
   - Monthly/Annual toggle
   - 3 pricing cards (Starter €49, Professional €99, Enterprise custom)
   - Professional card elevated with "Most Popular" badge
   - Trust line: "2-month free trial · No credit card required · Cancel anytime"
   - Mobile: stacked, Professional first
-- [ ] `IntegrationShowcase.tsx`
+- [x] `IntegrationShowcase.tsx`
   - 3 categories: Booking Platforms, Financial Services, Tax & Compliance
   - Logos grayscale, color on hover
   - "Coming soon" badges where applicable
-- [ ] `FAQSection.tsx`
+- [x] `FAQSection.tsx`
   - Accordion component (one open at a time)
   - 8 FAQ items from wireframe
   - "Still have questions? Contact Us" link
   - Max-width centered
-- [ ] `CTABanner.tsx`
+- [x] `CTABanner.tsx`
   - Deep Blue background, white text
   - H2 + CTA button (inverted colors)
   - Mobile: stacked centered
-- [ ] Wire all sections into `app/[locale]/page.tsx`
-- [ ] Add all homepage text to `messages/nl.json` and `messages/en.json`
+- [x] Wire all sections into `app/[locale]/page.tsx`
+- [x] Add all homepage text to `messages/nl.json` and `messages/en.json`
 
 **Output**: Full homepage with all 8 sections + CTA banner, bilingual, responsive
 
@@ -145,18 +145,18 @@ Build each section as a separate component in `components/sections/`:
 **Depends on**: Task 3 (reuses PricingSection, FAQSection, CTABanner)
 **Wireframe**: `wireframes/pricing.md`
 
-- [ ] Page header with H1 + monthly/annual toggle
-- [ ] Pricing cards (reuse/extend from homepage, with more detail)
-- [ ] Add-ons section (4 cards: extra properties, additional users, advanced analytics, accountant access)
-- [ ] Feature comparison table
+- [x] Page header with H1 + monthly/annual toggle
+- [x] Pricing cards (reuse/extend from homepage, with more detail)
+- [x] Add-ons section (4 cards: extra properties, additional users, advanced analytics, accountant access)
+- [x] Feature comparison table
   - Full table: STR Analytics, Financial, Tax Compliance, Platform, Support categories
   - ✓/— indicators per plan
   - Professional column highlighted
   - Mobile: horizontal scroll with sticky first column
-- [ ] Value proposition strip (4 icons: no hidden fees, scale as you grow, bank-level security, cancel anytime)
-- [ ] Pricing FAQ (9 items, accordion, first item expanded by default)
-- [ ] CTA banner (reuse component)
-- [ ] Add all pricing page text to translation files
+- [x] Value proposition strip (4 icons: no hidden fees, scale as you grow, bank-level security, cancel anytime)
+- [x] Pricing FAQ (9 items, accordion, first item expanded by default)
+- [x] CTA banner (reuse component)
+- [x] Add all pricing page text to translation files
 - [ ] SEO: page title, meta description, structured data (`Product` schema)
 
 **Output**: Dedicated pricing page with comparison table, add-ons, FAQ, bilingual
