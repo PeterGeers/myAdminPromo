@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to myAdmin!</title>
+  <style>
+    body { margin: 0; padding: 0; background-color: #F8FAFC; font-family: 'Inter', Arial, sans-serif; }
+    .wrapper { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
+    .card { background: #FFFFFF; border-radius: 16px; padding: 40px 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .logo { text-align: center; margin-bottom: 32px; }
+    .logo img { height: 32px; }
+    .icon { text-align: center; font-size: 48px; margin-bottom: 24px; }
+    h1 { color: #1E3A8A; font-size: 24px; font-weight: 700; text-align: center; margin: 0 0 16px 0; }
+    h2 { color: #1E3A8A; font-size: 18px; font-weight: 600; margin: 24px 0 16px 0; }
+    p { color: #4B5563; font-size: 16px; line-height: 1.6; margin: 0 0 16px 0; }
+    .center { text-align: center; }
+    .step { display: flex; align-items: flex-start; margin-bottom: 16px; }
+    .step-number { background-color: #2563EB; color: #FFFFFF; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; margin-right: 12px; flex-shrink: 0; }
+    .step-text { color: #4B5563; font-size: 15px; line-height: 1.5; }
+    .step-text strong { color: #1F2937; }
+    .btn-wrapper { text-align: center; margin: 32px 0; }
+    .btn { display: inline-block; background-color: #2563EB; color: #FFFFFF; text-decoration: none; padding: 14px 32px; border-radius: 8px; font-size: 16px; font-weight: 600; }
+    .trial-badge { text-align: center; background-color: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 12px; padding: 16px 24px; margin: 24px 0; }
+    .trial-badge p { color: #166534; margin: 0; font-weight: 500; }
+    .divider { border: none; border-top: 1px solid #E5E7EB; margin: 32px 0; }
+    .help { text-align: center; font-size: 14px; color: #6B7280; }
+    .help a { color: #2563EB; text-decoration: none; }
+    .footer { text-align: center; padding: 24px 0 0 0; font-size: 12px; color: #9CA3AF; }
+    .footer a { color: #9CA3AF; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="card">
+      <!-- Logo -->
+      <div class="logo">
+        <img src="https://drive.usercontent.google.com/download?id=1kdGvOuFQQoEFMrbzW9kCgcEVcUhB8bTT&export=view" alt="myAdmin" width="200" height="106" style="display:block;margin:0 auto;max-width:200px;height:auto;" />
+
+      <!-- Body -->
+      <p class="center">Hi {{firstName}},</p>
+      <p class="center">Your account is active and your free trial has started. You now have full access to all myAdmin features.</p>
+
+      <!-- Trial badge -->
+      <div class="trial-badge">
+        <p>🕐 Your 2-month free trial is active until {{trialEndDate}}</p>
+      </div>
+
+      <!-- Getting started steps -->
+      <h2>Get started in 3 steps</h2>
+
+      <div class="step">
+        <span class="step-number">1</span>
+        <span class="step-text"><strong>Connect your platforms</strong><br>Link your Airbnb and/or Booking.com account to automatically import your bookings.</span>
+      </div>
+
+      <div class="step">
+        <span class="step-number">2</span>
+        <span class="step-text"><strong>Import your bookings</strong><br>Once connected, your booking history is imported automatically. Review your revenue dashboard.</span>
+      </div>
+
+      <div class="step">
+        <span class="step-number">3</span>
+        <span class="step-text"><strong>Explore your dashboard</strong><br>Check out pricing insights, financial reports, and see how myAdmin simplifies your administration.</span>
+      </div>
+
+      <!-- CTA Button -->
+      <div class="btn-wrapper">
+        <a href="https://app.myadmin.jabaki.nl/dashboard" class="btn">Go to Dashboard →</a>
+      </div>
+
+      <hr class="divider">
+
+      <!-- What's included -->
+      <h2>What's included in your trial</h2>
+      <p>✓ All STR analytics and pricing insights<br>
+         ✓ Financial administration and reports<br>
+         ✓ Tax declarations (BTW, IB, tourist tax)<br>
+         ✓ Bank statement import<br>
+         ✓ AI-powered invoice processing<br>
+         ✓ No credit card required</p>
+
+      <hr class="divider">
+
+      <!-- Help -->
+      <p class="help">
+        Need help getting started? Reply to this email or contact us at
+        <a href="mailto:support@jabaki.nl">support@jabaki.nl</a>
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>&copy; 2026 myAdmin — The integrated platform for STR property managers</p>
+      <p>
+        <a href="https://myadmin.jabaki.nl/en/privacy">Privacy Policy</a> &middot;
+        <a href="https://myadmin.jabaki.nl/en/terms">Terms of Service</a> &middot;
+        <a href="{{unsubscribeUrl}}">Unsubscribe</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

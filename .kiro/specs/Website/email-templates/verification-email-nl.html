@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bevestig je e-mailadres — myAdmin</title>
+  <style>
+    body { margin: 0; padding: 0; background-color: #F8FAFC; font-family: 'Inter', Arial, sans-serif; }
+    .wrapper { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
+    .card { background: #FFFFFF; border-radius: 16px; padding: 40px 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .logo { text-align: center; margin-bottom: 32px; }
+    .logo img { height: 32px; }
+    .icon { text-align: center; font-size: 48px; margin-bottom: 24px; }
+    h1 { color: #1E3A8A; font-size: 24px; font-weight: 700; text-align: center; margin: 0 0 16px 0; }
+    p { color: #4B5563; font-size: 16px; line-height: 1.6; margin: 0 0 16px 0; text-align: center; }
+    .email-highlight { color: #1E3A8A; font-weight: 600; }
+    .btn-wrapper { text-align: center; margin: 32px 0; }
+    .btn { display: inline-block; background-color: #2563EB; color: #FFFFFF; text-decoration: none; padding: 14px 32px; border-radius: 8px; font-size: 16px; font-weight: 600; }
+    .link-fallback { text-align: center; font-size: 13px; color: #9CA3AF; word-break: break-all; margin-top: 8px; }
+    .divider { border: none; border-top: 1px solid #E5E7EB; margin: 32px 0; }
+    .help { text-align: center; font-size: 14px; color: #6B7280; }
+    .help a { color: #2563EB; text-decoration: none; }
+    .footer { text-align: center; padding: 24px 0 0 0; font-size: 12px; color: #9CA3AF; }
+    .footer a { color: #9CA3AF; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="card">
+      <!-- Logo -->
+      <div class="logo">
+        <img src="https://drive.usercontent.google.com/download?id=1kdGvOuFQQoEFMrbzW9kCgcEVcUhB8bTT&export=view" alt="myAdmin" width="200" height="106" style="display:block;margin:0 auto;max-width:200px;height:auto;" />
+
+      <!-- Body -->
+      <p>Hoi {{firstName}},</p>
+      <p>Bedankt voor je aanmelding bij myAdmin! Bevestig je e-mailadres om je account te activeren.</p>
+      <p>We hebben dit gestuurd naar <span class="email-highlight">{{email}}</span></p>
+
+      <!-- CTA Button -->
+      <div class="btn-wrapper">
+        <a href="{{verificationUrl}}" class="btn">E-mailadres bevestigen</a>
+      </div>
+
+      <!-- Fallback link -->
+      <p class="link-fallback">
+        Werkt de knop niet? Kopieer en plak deze link in je browser:<br>
+        {{verificationUrl}}
+      </p>
+
+      <hr class="divider">
+
+      <!-- Help text -->
+      <p class="help">
+        Deze link is 24 uur geldig. Als je geen myAdmin-account hebt aangemaakt,
+        kun je deze e-mail veilig negeren.
+      </p>
+      <p class="help">
+        Vragen? Neem contact met ons op via <a href="mailto:support@jabaki.nl">support@jabaki.nl</a>
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>&copy; 2026 myAdmin — Het geïntegreerde platform voor STR-vastgoedbeheerders</p>
+      <p>
+        <a href="https://myadmin.jabaki.nl/nl/privacy">Privacybeleid</a> &middot;
+        <a href="https://myadmin.jabaki.nl/nl/terms">Algemene voorwaarden</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>
