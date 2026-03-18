@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import Container from "@/components/ui/Container";
 
 const categories = [
@@ -52,11 +51,9 @@ export default function IntegrationShowcase() {
                 {cat.integrations.map((item) => (
                   <div key={item.name} className="relative flex flex-col items-center gap-2">
                     {item.logo ? (
-                      <Image
+                      <img
                         src={item.logo}
                         alt={item.name}
-                        width={120}
-                        height={40}
                         className="h-10 w-auto object-contain grayscale transition-all hover:grayscale-0"
                       />
                     ) : (

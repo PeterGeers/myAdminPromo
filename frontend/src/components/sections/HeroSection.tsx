@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 
@@ -64,12 +63,10 @@ export default function HeroSection() {
         <div className="mt-16 border-t border-gray-200 pt-10">
           <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8 opacity-70 grayscale">
             {platformLogos.map((logo) => (
-              <Image
+              <img
                 key={logo.name}
                 src={logo.src}
                 alt={logo.name}
-                width={logo.width * 2}
-                height={logo.height * 2}
                 className="h-14 w-auto max-w-[180px] object-contain"
               />
             ))}

@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
-import Image from "next/image";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import LanguageDropdown from "@/components/layout/LanguageDropdown";
@@ -40,13 +39,10 @@ export default function Header({ locale }: { locale: string }) {
         <Container>
           <div className="flex h-16 items-center justify-between">
             <Link href="/" className="flex-shrink-0">
-              <Image
+              <img
                 src="/logo-header.png"
                 alt="myAdmin"
-                width={120}
-                height={32}
                 className="h-8 w-auto"
-                priority
               />
             </Link>
 

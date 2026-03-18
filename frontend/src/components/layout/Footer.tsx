@@ -2,7 +2,6 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import Image from "next/image";
 import Container from "@/components/ui/Container";
 
 interface FooterProps {
@@ -59,11 +58,9 @@ export default function Footer({ locale }: FooterProps) {
         {/* Logo + tagline */}
         <div className="mb-10">
           <Link href="/">
-            <Image
+            <img
               src="/logo-dark.png"
               alt="myAdmin"
-              width={120}
-              height={28}
               className="h-7 w-auto"
             />
           </Link>
