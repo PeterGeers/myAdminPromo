@@ -157,7 +157,7 @@ Build each section as a separate component in `components/sections/`:
 - [x] Pricing FAQ (9 items, accordion, first item expanded by default)
 - [x] CTA banner (reuse component)
 - [x] Add all pricing page text to translation files
-- [ ] SEO: page title, meta description, structured data (`Product` schema)
+- [x] SEO: page title, meta description, structured data (`Product` schema)
 
 **Output**: Dedicated pricing page with comparison table, add-ons, FAQ, bilingual
 

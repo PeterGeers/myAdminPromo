@@ -194,6 +194,8 @@
     "cta": "Start Free Trial"
   },
   "PricingPage": {
+    "metaTitle": "Pricing — myAdmin STR Property Management Platform",
+    "metaDescription": "Simple, transparent pricing for STR property managers. Plans from €49/month. 2-month free trial, no credit card required.",
     "title": "Simple, transparent pricing",
     "subtitle": "Pay for properties, not features. Start with a free 2-month trial — no credit card required.",
     "addOnsTitle": "Customize your plan",

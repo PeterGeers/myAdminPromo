@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import CTABanner from "@/components/sections/CTABanner";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://myadmin.jabaki.nl";
 
 /* ── Plan data ── */
 const plans = [
@@ -124,6 +126,30 @@ export default function PricingPage() {
   const tf = useTranslations("PricingFAQ");
   const [annual, setAnnual] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0); // first expanded
+
+  /* Inject JSON-LD at runtime to avoid Turbopack parse warning */
+  useEffect(() => {
+    const id = "pricing-jsonld";
+    if (document.getElementById(id)) return;
+    const script = document.createElement("script");
+    script.id = id;
+    script.type = "application/ld+json";
+    script.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: "myAdmin",
+      description: "Integrated platform for STR property managers — rental analytics, financial administration, and tax compliance.",
+      url: siteUrl,
+      brand: { "@type": "Brand", name: "myAdmin" },
+      offers: [
+        { "@type": "Offer", name: "Starter", price: "49", priceCurrency: "EUR", priceValidUntil: "2027-12-31", availability: "https://schema.org/InStock", url: `${siteUrl}/signup` },
+        { "@type": "Offer", name: "Professional", price: "99", priceCurrency: "EUR", priceValidUntil: "2027-12-31", availability: "https://schema.org/InStock", url: `${siteUrl}/signup` },
+        { "@type": "Offer", name: "Enterprise", price: "0", priceCurrency: "EUR", availability: "https://schema.org/InStock", url: `${siteUrl}/signup` },
+      ],
+    });
+    document.head.appendChild(script);
+    return () => { script.remove(); };
+  }, []);
 
   function renderCell(value: CellValue) {
     if (value === "included") return <span className="text-brand-teal font-semibold">{tp("included")}</span>;
@@ -247,8 +273,8 @@ export default function PricingPage() {
               </thead>
               <tbody>
                 {comparison.map((cat) => (
-                  <>
-                    <tr key={cat.categoryKey}>
+                  <Fragment key={cat.categoryKey}>
+                    <tr>
                       <td colSpan={4} className="sticky left-0 bg-gray-100 px-0 py-2 text-xs font-bold uppercase tracking-wider text-gray-500">
                         {tp(cat.categoryKey)}
                       </td>
@@ -261,7 +287,7 @@ export default function PricingPage() {
                         <td className="px-4 py-3 text-center">{renderCell(row.enterprise)}</td>
                       </tr>
                     ))}
-                  </>
+                  </Fragment>
                 ))}
               </tbody>
             </table>
