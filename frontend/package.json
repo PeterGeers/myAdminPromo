@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@swc/helpers": "^0.5.19",
     "next": "^16.2.0",
     "next-intl": "^4.8.3",
     "react": "^19.1.0",
