@@ -1,0 +1,18 @@
+/* ── Google Fonts ── */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap");
+
+@import "tailwindcss";
+
+/* ── Brand Theme ── */
+@theme {
+  /* Brand Colors */
+  --color-deep-blue: #1E3A8A;
+  --color-brand-blue: #2563EB;
+  --color-brand-teal: #0D9488;
+  --color-deep-slate: #0F172A;
+  --color-off-white: #F8FAFC;
+
+  /* Font Families */
+  --font-heading: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
