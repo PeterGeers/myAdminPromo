@@ -27,6 +27,7 @@ interface ButtonAsButton extends ButtonBaseProps, Omit<React.ButtonHTMLAttribute
 
 interface ButtonAsLink extends ButtonBaseProps {
   href: string;
+  onClick?: () => void;
 }
 
 type ButtonProps = ButtonAsButton | ButtonAsLink;
@@ -41,9 +42,9 @@ export default function Button({
   const classes = `inline-flex items-center justify-center rounded-lg font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ${variants[variant]} ${sizes[size]} ${className}`;
 
   if ("href" in props && props.href) {
-    const { href, ...rest } = props;
+    const { href, onClick, ...rest } = props as ButtonAsLink;
     return (
-      <Link href={href} className={classes} {...rest}>
+      <Link href={href} className={classes} onClick={onClick} {...rest}>
         {children}
       </Link>
     );

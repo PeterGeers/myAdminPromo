@@ -1,6 +1,9 @@
+"use client";
+
 import { useTranslations } from "next-intl";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
+import { trackEvent } from "@/lib/analytics";
 
 export default function CTABanner() {
   const t = useTranslations("CTABanner");
@@ -20,6 +23,7 @@ export default function CTABanner() {
             variant="secondary"
             size="lg"
             className="border-white text-white hover:bg-white hover:text-deep-blue"
+            onClick={() => trackEvent("cta_click", { location: "cta_banner", label: "start_trial" })}
           >
             {t("cta")}
           </Button>

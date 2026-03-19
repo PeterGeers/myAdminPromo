@@ -7,6 +7,7 @@ import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import LanguageDropdown from "@/components/layout/LanguageDropdown";
 import MobileDrawer from "@/components/layout/MobileDrawer";
+import { trackEvent } from "@/lib/analytics";
 
 export default function Header({ locale }: { locale: string }) {
   const t = useTranslations("Header");
@@ -70,6 +71,7 @@ export default function Header({ locale }: { locale: string }) {
                   variant="primary"
                   size="sm"
                   className="hidden sm:inline-flex"
+                  onClick={() => trackEvent("cta_click", { location: "nav", label: "log_in" })}
                 >
                   {t("logIn")}
                 </Button>
@@ -79,6 +81,7 @@ export default function Header({ locale }: { locale: string }) {
                   variant="primary"
                   size="sm"
                   className="hidden sm:inline-flex"
+                  onClick={() => trackEvent("cta_click", { location: "nav", label: "start_trial" })}
                 >
                   <span className="lg:hidden">{t("trial")}</span>
                   <span className="hidden lg:inline">{t("startTrial")}</span>

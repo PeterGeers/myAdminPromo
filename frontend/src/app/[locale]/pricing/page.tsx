@@ -129,27 +129,52 @@ export default function PricingPage() {
 
   /* Inject JSON-LD at runtime to avoid Turbopack parse warning */
   useEffect(() => {
-    const id = "pricing-jsonld";
-    if (document.getElementById(id)) return;
-    const script = document.createElement("script");
-    script.id = id;
-    script.type = "application/ld+json";
-    script.textContent = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Product",
-      name: "myAdmin",
-      description: "Integrated platform for STR property managers — rental analytics, financial administration, and tax compliance.",
-      url: siteUrl,
-      brand: { "@type": "Brand", name: "myAdmin" },
-      offers: [
-        { "@type": "Offer", name: "Starter", price: "49", priceCurrency: "EUR", priceValidUntil: "2027-12-31", availability: "https://schema.org/InStock", url: `${siteUrl}/signup` },
-        { "@type": "Offer", name: "Professional", price: "99", priceCurrency: "EUR", priceValidUntil: "2027-12-31", availability: "https://schema.org/InStock", url: `${siteUrl}/signup` },
-        { "@type": "Offer", name: "Enterprise", price: "0", priceCurrency: "EUR", availability: "https://schema.org/InStock", url: `${siteUrl}/signup` },
-      ],
-    });
-    document.head.appendChild(script);
-    return () => { script.remove(); };
-  }, []);
+    /* Product schema */
+    const productId = "pricing-jsonld";
+    if (!document.getElementById(productId)) {
+      const script = document.createElement("script");
+      script.id = productId;
+      script.type = "application/ld+json";
+      script.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Product",
+        name: "myAdmin",
+        description: "Integrated platform for STR property managers — rental analytics, financial administration, and tax compliance.",
+        url: siteUrl,
+        brand: { "@type": "Brand", name: "myAdmin" },
+        offers: [
+          { "@type": "Offer", name: "Starter", price: "49", priceCurrency: "EUR", priceValidUntil: "2027-12-31", availability: "https://schema.org/InStock", url: `${siteUrl}/signup` },
+          { "@type": "Offer", name: "Professional", price: "99", priceCurrency: "EUR", priceValidUntil: "2027-12-31", availability: "https://schema.org/InStock", url: `${siteUrl}/signup` },
+          { "@type": "Offer", name: "Enterprise", price: "0", priceCurrency: "EUR", availability: "https://schema.org/InStock", url: `${siteUrl}/signup` },
+        ],
+      });
+      document.head.appendChild(script);
+    }
+
+    /* FAQPage schema */
+    const faqId = "pricing-faq-jsonld";
+    if (!document.getElementById(faqId)) {
+      const faqItems = Array.from({ length: faqCount }, (_, i) => ({
+        "@type": "Question",
+        name: tf(`q${i + 1}`),
+        acceptedAnswer: { "@type": "Answer", text: tf(`a${i + 1}`) },
+      }));
+      const faqScript = document.createElement("script");
+      faqScript.id = faqId;
+      faqScript.type = "application/ld+json";
+      faqScript.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqItems,
+      });
+      document.head.appendChild(faqScript);
+    }
+
+    return () => {
+      document.getElementById(productId)?.remove();
+      document.getElementById(faqId)?.remove();
+    };
+  }, [tf]);
 
   function renderCell(value: CellValue) {
     if (value === "included") return <span className="text-brand-teal font-semibold">{tp("included")}</span>;

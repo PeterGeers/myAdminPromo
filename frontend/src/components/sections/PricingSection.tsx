@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
+import { trackEvent } from "@/lib/analytics";
 
 const plans = [
   {
@@ -65,7 +66,11 @@ export default function PricingSection() {
             type="button"
             role="switch"
             aria-checked={annual}
-            onClick={() => setAnnual(!annual)}
+            onClick={() => {
+              const next = !annual;
+              setAnnual(next);
+              trackEvent("pricing_toggle", { billing: next ? "annual" : "monthly" });
+            }}
             className={`relative inline-flex h-7 w-12 shrink-0 cursor-pointer rounded-full transition-colors ${
               annual ? "bg-brand-blue" : "bg-gray-300"
             }`}

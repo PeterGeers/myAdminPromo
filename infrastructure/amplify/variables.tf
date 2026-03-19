@@ -28,5 +28,11 @@ variable "api_base_url" {
 variable "ga4_measurement_id" {
   description = "Google Analytics 4 measurement ID (e.g. G-XXXXXXXXXX)"
   type        = string
-  default     = ""
+  default     = "G-EVDCRG8DX2"
+}
+
+variable "csrf_secret" {
+  description = "Shared CSRF secret between promo frontend and backend signup API"
+  type        = string
+  sensitive   = true
 }

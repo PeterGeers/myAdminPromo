@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
+import { trackEvent } from "@/lib/analytics";
 
 const LANGUAGES = [
   { code: "nl", label: "Nederlands", flag: "🇳🇱", active: true },
@@ -53,10 +54,11 @@ export default function LanguageDropdown({
 
   const switchLocale = useCallback(
     (newLocale: Locale) => {
+      trackEvent("language_switch", { from: locale, to: newLocale });
       router.replace(pathname, { locale: newLocale });
       setOpen(false);
     },
-    [router, pathname]
+    [router, pathname, locale]
   );
 
   const isDark = variant === "dark";

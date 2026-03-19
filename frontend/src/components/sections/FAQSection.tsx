@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Container from "@/components/ui/Container";
+import { trackEvent } from "@/lib/analytics";
 
 const faqCount = 8;
 
@@ -10,7 +11,11 @@ export default function FAQSection() {
   const t = useTranslations("FAQ");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
+  const toggle = (i: number) => {
+    const willOpen = openIndex !== i;
+    setOpenIndex(willOpen ? i : null);
+    if (willOpen) trackEvent("faq_open", { question: `q${i + 1}` });
+  };
 
   return (
     <section id="faq" className="bg-off-white py-16 sm:py-20">

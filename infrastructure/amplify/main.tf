@@ -25,9 +25,10 @@ resource "aws_amplify_app" "myadmin_website" {
   access_token = var.github_access_token
 
   environment_variables = {
-    NEXT_PUBLIC_SITE_URL = "https://myadmin.jabaki.nl"
-    NEXT_PUBLIC_API_URL  = var.api_base_url
-    NEXT_PUBLIC_GA_ID    = var.ga4_measurement_id
+    NEXT_PUBLIC_SITE_URL    = "https://myadmin.jabaki.nl"
+    NEXT_PUBLIC_API_URL     = var.api_base_url
+    NEXT_PUBLIC_GA_ID       = var.ga4_measurement_id
+    NEXT_PUBLIC_CSRF_SECRET = var.csrf_secret
   }
 
   build_spec = file("${path.module}/buildspec.yml")

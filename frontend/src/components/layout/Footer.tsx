@@ -29,7 +29,7 @@ export default function Footer({ locale }: FooterProps) {
         // { label: t("about"), href: "/about" },
         // { label: t("blog"), href: "/blog" },
         // { label: t("careers"), href: "/careers" },
-        { label: t("contact"), href: "mailto:hello@myadmin.nl", external: true },
+        { label: t("contact"), href: "mailto:peter@jabaki.nl", external: true },
       ],
     },
     {
@@ -46,7 +46,7 @@ export default function Footer({ locale }: FooterProps) {
       links: [
         // { label: t("twitter"), href: "https://x.com/myadmin", external: true },
         // { label: t("linkedin"), href: "https://linkedin.com/company/myadmin", external: true },
-        { label: t("email"), href: "mailto:hello@myadmin.nl", external: true },
+        { label: t("email"), href: "mailto:peter@jabaki.nl", external: true },
         // { label: t("youtube"), href: "https://youtube.com/@myadmin", external: true },
       ],
     },

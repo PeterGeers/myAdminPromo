@@ -23,7 +23,9 @@ This is the **myAdmin-website** repository — a separate project from the main 
 
 - **Framework**: Next.js (SEO-friendly, React-based)
 - **Styling**: Tailwind CSS
-- **Hosting**: Frontend deployed via GitHub Actions; Backend hosted on AWS
+- **Hosting**: Frontend deployed via AWS Amplify (git-based, auto-deploys from GitHub) to `myadmin.jabaki.nl`
+- **Infrastructure**: Amplify provisioned via Terraform (`infrastructure/amplify/`)
+- **Backend**: None in this repo — the signup API and app backend live in the separate myAdmin app repo (Flask on AWS)
 - **CMS**: Headless CMS for blog (future phase)
 
 ## Product Positioning (from requirements spec)

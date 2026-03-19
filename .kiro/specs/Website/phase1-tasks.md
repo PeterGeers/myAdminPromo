@@ -170,32 +170,33 @@ Build each section as a separate component in `components/sections/`:
 **Depends on**: Task 2
 **Wireframe**: `wireframes/trial-signup.md`
 
-- [ ] Signup form (right column):
+- [x] Signup form (right column):
   - Required: first name, last name, email, password, terms checkbox
   - Optional: company name, property range (dropdown), referral source (dropdown)
   - Password: show/hide toggle, strength indicator
   - Inline validation on blur
   - Honeypot field for bot detection
   - CSRF token
-- [ ] Value props (left column):
+- [x] Value props (left column):
   - Benefit checklist with brand-teal checkmarks
   - Trust signal + platform logos
-- [ ] Form submission:
+- [x] Form submission:
+  - Read .kiro\specs\Website\backendApiReference.md
   - POST to `/api/signup` (connect when backend ready)
   - For now: show success state with mock response
   - Handle error states: email exists (409), validation error (422), rate limit (429)
-- [ ] Email verification page (`/signup/verify`):
+- [x] Email verification page (`/signup/verify`):
   - "Check your inbox" message with user's email
   - Resend button with 60s cooldown
   - Spam folder hint
-- [ ] Confirmation page (`/signup/confirm`):
+- [x] Confirmation page (`/signup/confirm`):
   - "You're all set!" with 3 quick-start steps
   - CTA: "Go to Dashboard"
   - Auto-redirect countdown (5s)
-- [ ] Social signup buttons (Google, Microsoft) — UI only, wire up later
-- [ ] Add all signup text to translation files
-- [ ] SEO: noindex meta tag
-- [ ] GA4: form field focus events, submission attempt, successful signup (conversion)
+- [x] Social signup buttons (Google, Microsoft) — UI only, wire up later
+- [x] Add all signup text to translation files
+- [x] SEO: noindex meta tag
+- [x] GA4: form field focus events, submission attempt, successful signup (conversion)
 
 **Output**: Complete signup flow (form → verification → confirmation), bilingual, responsive
 
@@ -208,21 +209,21 @@ Build each section as a separate component in `components/sections/`:
 **Depends on**: Task 2
 **Wireframes**: `wireframes/privacy-policy.md`, `wireframes/terms-of-service.md`
 
-- [ ] Privacy Policy page (`/privacy`):
+- [x] Privacy Policy page (`/privacy`):
   - Sticky sidebar TOC (desktop), collapsible dropdown (mobile)
   - 10 content sections per wireframe
   - Data tables (data collected, cookies, third-party services, storage/retention)
   - GDPR rights as visual cards (6 rights)
   - "Manage cookie preferences" button (opens consent modal)
   - Scrollspy highlights active section in sidebar
-- [ ] Terms of Service page (`/terms`):
+- [x] Terms of Service page (`/terms`):
   - Same sidebar TOC pattern as privacy page
   - 15 content sections per wireframe
   - Plan comparison table in section 4
   - Liability section with warning background styling
   - All Dutch law references included
-- [ ] Add all legal text to translation files (NL + EN)
-- [ ] Link from footer (Privacy, Terms) and signup form checkbox
+- [x] Add all legal text to translation files (NL + EN)
+- [x] Link from footer (Privacy, Terms) and signup form checkbox
 
 **Output**: Privacy policy + terms pages, bilingual, with sidebar navigation
 
@@ -235,18 +236,18 @@ Build each section as a separate component in `components/sections/`:
 **Depends on**: Task 2
 **Wireframe**: `wireframes/privacy-policy.md` (section 4)
 
-- [ ] `components/CookieConsent.tsx` — banner + preferences modal
+- [x] `components/CookieConsent.tsx` — banner + preferences modal
   - Banner: bottom of viewport, 3 buttons (Accept All, Reject All, Manage Preferences)
   - Preferences modal: Essential (locked on), Analytics (toggle), Marketing (toggle, future)
   - Minimized state: small cookie icon bottom-left to reopen
-- [ ] `hooks/useCookieConsent.ts` — reads/writes consent cookie
+- [x] `hooks/useCookieConsent.ts` — reads/writes consent cookie
   - Cookie: `cookie_consent` with JSON value + timestamp
   - Duration: 1 year
-- [ ] `lib/analytics.ts` — conditional GA4 loader
+- [x] `lib/analytics.ts` — conditional GA4 loader
   - Only load gtag.js if `consent.analytics === true`
   - Remove GA cookies if consent revoked
-- [ ] Wire into root layout (appears on every page)
-- [ ] GDPR compliant: opt-in model, no analytics before consent
+- [x] Wire into root layout (appears on every page)
+- [x] GDPR compliant: opt-in model, no analytics before consent
 
 **Output**: Cookie consent banner + preferences modal, GA4 conditionally loaded
 
@@ -258,9 +259,9 @@ Build each section as a separate component in `components/sections/`:
 **Estimated effort**: 2-3 hours  
 **Depends on**: Task 7
 
-- [ ] Set up GA4 property and get measurement ID
-- [ ] Integrate gtag.js via cookie consent system (only loads after consent)
-- [ ] Track events:
+- [x] Set up GA4 property and get measurement ID
+- [x] Integrate gtag.js via cookie consent system (only loads after consent)
+- [x] Track events:
   - Page views (automatic)
   - Trial signup form submission (conversion event)
   - CTA button clicks (hero, pricing, nav)
@@ -268,7 +269,7 @@ Build each section as a separate component in `components/sections/`:
   - FAQ accordion opens
   - Language switcher usage
   - Scroll depth on homepage
-- [ ] Configure `NEXT_PUBLIC_GA_ID` environment variable in Amplify
+- [x] Configure `NEXT_PUBLIC_GA_ID` environment variable in Amplify
 - [ ] Test tracking in GA4 Realtime view
 
 **Output**: GA4 tracking live with consent-gated analytics
@@ -281,18 +282,18 @@ Build each section as a separate component in `components/sections/`:
 **Estimated effort**: 2-3 hours  
 **Depends on**: Task 3
 
-- [ ] Configure `metadata` in Next.js for each page:
+- [x] Configure `metadata` in Next.js for each page:
   - Homepage: title, description, Open Graph image, Twitter card
   - Pricing: title, description, Product structured data
   - Signup: noindex
   - Privacy/Terms: title, description
-- [ ] Add `robots.txt` and `sitemap.xml` (auto-generated or manual)
-- [ ] Add structured data (JSON-LD):
+- [x] Add `robots.txt` and `sitemap.xml` (auto-generated or manual)
+- [x] Add structured data (JSON-LD):
   - `Organization` schema (homepage)
   - `Product` schema with pricing offers (pricing page)
   - `FAQPage` schema (homepage FAQ, pricing FAQ)
-- [ ] Configure canonical URLs per locale (`/nl/`, `/en/`)
-- [ ] Add `hreflang` tags for NL + EN
+- [x] Configure canonical URLs per locale (`/nl/`, `/en/`)
+- [x] Add `hreflang` tags for NL + EN
 - [ ] Verify with Google Search Console (after domain is live)
 
 **Output**: SEO-optimized pages with structured data, sitemap, proper meta tags
