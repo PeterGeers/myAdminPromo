@@ -1,14 +1,116 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import Container from "@/components/ui/Container";
 
-const tabs = [
-  { key: "tab1", icon: "🏠", featuresKey: "tab1Features", featureCount: 5, image: "/visuals/str-gws-actuals.png" },
-  { key: "tab2", icon: "💰", featuresKey: "tab2Features", featureCount: 5, image: "/visuals/fin-gws-actuals.png" },
-  { key: "tab3", icon: "🔗", featuresKey: "tab3Features", featureCount: 4, image: "/visuals/myadmin-functions.png" },
-] as const;
+type Tab = {
+  key: string;
+  icon: string;
+  featuresKey: string;
+  featureCount: number;
+  images: string[];
+};
+
+const tabs: Tab[] = [
+  { key: "tab1", icon: "🏠", featuresKey: "tab1Features", featureCount: 5, images: ["/visuals/str-gws-actuals.png"] },
+  { key: "tab2", icon: "💰", featuresKey: "tab2Features", featureCount: 5, images: ["/visuals/fin-gws-actuals.png"] },
+  {
+    key: "tab3",
+    icon: "🔗",
+    featuresKey: "tab3Features",
+    featureCount: 4,
+    images: [
+      "/visuals/myadmin-functions.png",
+      "/visuals/str-bookings-by-country.png",
+      "/visuals/str-future-trend.png",
+      "/visuals/str-gws-violins.png",
+    ],
+  },
+];
+
+function ImageCarousel({ images, alt }: { images: string[]; alt: string }) {
+  const [current, setCurrent] = useState(0);
+  const isCarousel = images.length > 1;
+
+  const next = useCallback(() => {
+    setCurrent((c) => (c + 1) % images.length);
+  }, [images.length]);
+
+  const prev = useCallback(() => {
+    setCurrent((c) => (c - 1 + images.length) % images.length);
+  }, [images.length]);
+
+  // Auto-play every 4 seconds
+  useEffect(() => {
+    if (!isCarousel) return;
+    const timer = setInterval(next, 4000);
+    return () => clearInterval(timer);
+  }, [isCarousel, next]);
+
+  // Reset to first image when images change (tab switch)
+  useEffect(() => {
+    setCurrent(0);
+  }, [images]);
+
+  return (
+    <div className="relative w-full overflow-hidden rounded-2xl shadow-lg">
+      <div
+        className="flex transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(-${current * 100}%)` }}
+      >
+        {images.map((src, i) => (
+          <img
+            key={src}
+            src={src}
+            alt={`${alt} ${i + 1}`}
+            className="h-auto w-full shrink-0"
+            width={600}
+            height={450}
+          />
+        ))}
+      </div>
+
+      {isCarousel && (
+        <>
+          {/* Prev / Next buttons */}
+          <button
+            onClick={prev}
+            aria-label="Previous image"
+            className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 shadow hover:bg-white transition-colors"
+          >
+            <svg className="h-5 w-5 text-deep-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            onClick={next}
+            aria-label="Next image"
+            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 p-2 shadow hover:bg-white transition-colors"
+          >
+            <svg className="h-5 w-5 text-deep-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          {/* Dots */}
+          <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-2">
+            {images.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                aria-label={`Go to image ${i + 1}`}
+                className={`h-2.5 w-2.5 rounded-full transition-colors ${
+                  i === current ? "bg-brand-blue" : "bg-white/60"
+                }`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
 
 export default function FeatureShowcase() {
   const t = useTranslations("FeatureShowcase");
@@ -76,16 +178,8 @@ export default function FeatureShowcase() {
             </p>
           </div>
 
-          {/* Screenshot */}
-          <div className="w-full overflow-hidden rounded-2xl shadow-lg">
-            <img
-              src={currentTab.image}
-              alt={t(`${currentTab.key}Title`)}
-              className="h-auto w-full"
-              width={600}
-              height={450}
-            />
-          </div>
+          {/* Screenshot / Carousel */}
+          <ImageCarousel images={currentTab.images} alt={t(`${currentTab.key}Title`)} />
         </div>
       </Container>
     </section>
