@@ -5,9 +5,9 @@ import { useTranslations } from "next-intl";
 import Container from "@/components/ui/Container";
 
 const tabs = [
-  { key: "tab1", icon: "🏠", featuresKey: "tab1Features", featureCount: 5 },
-  { key: "tab2", icon: "💰", featuresKey: "tab2Features", featureCount: 5 },
-  { key: "tab3", icon: "🔗", featuresKey: "tab3Features", featureCount: 4 },
+  { key: "tab1", icon: "🏠", featuresKey: "tab1Features", featureCount: 5, image: "/visuals/str-gws-actuals.png" },
+  { key: "tab2", icon: "💰", featuresKey: "tab2Features", featureCount: 5, image: "/visuals/fin-gws-actuals.png" },
+  { key: "tab3", icon: "🔗", featuresKey: "tab3Features", featureCount: 4, image: "/visuals/myadmin-functions.png" },
 ] as const;
 
 export default function FeatureShowcase() {
@@ -76,14 +76,15 @@ export default function FeatureShowcase() {
             </p>
           </div>
 
-          {/* Screenshot placeholder */}
-          <div className="aspect-[4/3] w-full rounded-2xl bg-gradient-to-br from-brand-blue/10 via-brand-teal/5 to-brand-blue/5 shadow-sm">
-            <div className="flex h-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-brand-blue/15 p-6 text-center">
-              <span className="text-4xl">{currentTab.icon}</span>
-              <p className="mt-3 text-sm font-medium text-brand-blue/40">
-                {t(`${currentTab.key}Title`)} — screenshot
-              </p>
-            </div>
+          {/* Screenshot */}
+          <div className="w-full overflow-hidden rounded-2xl shadow-lg">
+            <img
+              src={currentTab.image}
+              alt={t(`${currentTab.key}Title`)}
+              className="h-auto w-full"
+              width={600}
+              height={450}
+            />
           </div>
         </div>
       </Container>

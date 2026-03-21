@@ -62,7 +62,8 @@
     "subtitle": "myAdmin connects directly to Airbnb and Booking.com, uses AI to maximize revenue, and handles your bookkeeping and tax declarations.",
     "primaryCta": "Start Free Trial",
     "secondaryCta": "See Features",
-    "trustSignal": "Built by financial professionals — one platform replaces 3-4 tools"
+    "trustSignal": "Built by financial professionals — one platform replaces 3-4 tools",
+    "heroImageAlt": "myAdmin platform overview — rental analytics, financial administration, and tax compliance in one dashboard"
   },
   "ProblemSolution": {
     "title": "Stop juggling multiple tools",

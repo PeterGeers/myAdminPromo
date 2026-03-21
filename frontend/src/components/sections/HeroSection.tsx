@@ -49,16 +49,15 @@ export default function HeroSection() {
             </p>
           </div>
 
-          {/* Image/illustration placeholder */}
+          {/* Dashboard visual */}
           <div className="flex items-center justify-center">
-            <div className="aspect-[4/3] w-full max-w-lg rounded-2xl bg-gradient-to-br from-brand-blue/10 via-brand-teal/10 to-brand-blue/5 p-8">
-              <div className="flex h-full flex-col items-center justify-center rounded-xl border-2 border-dashed border-brand-blue/20 p-6 text-center">
-                <svg className="mb-4 h-16 w-16 text-brand-blue/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
-                </svg>
-                <p className="text-sm font-medium text-brand-blue/40">Dashboard illustration</p>
-              </div>
-            </div>
+            <img
+              src="/visuals/myadmin-functions.png"
+              alt={t("heroImageAlt")}
+              className="w-full max-w-lg rounded-2xl shadow-lg"
+              width={600}
+              height={450}
+            />
           </div>
         </div>
 
