@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Container from "@/components/ui/Container";
 
 type Tab = {
@@ -12,22 +12,24 @@ type Tab = {
   images: string[];
 };
 
-const tabs: Tab[] = [
-  { key: "tab1", icon: "🏠", featuresKey: "tab1Features", featureCount: 5, images: ["/visuals/str-gws-actuals.png"] },
-  { key: "tab2", icon: "💰", featuresKey: "tab2Features", featureCount: 5, images: ["/visuals/fin-gws-actuals.png"] },
-  {
-    key: "tab3",
-    icon: "🔗",
-    featuresKey: "tab3Features",
-    featureCount: 4,
-    images: [
-      "/visuals/myadmin-functions.png",
-      "/visuals/str-bookings-by-country.png",
-      "/visuals/str-future-trend.png",
-      "/visuals/str-gws-violins.png",
-    ],
-  },
-];
+function getTabs(locale: string): Tab[] {
+  return [
+    { key: "tab1", icon: "🏠", featuresKey: "tab1Features", featureCount: 5, images: [`/visuals/${locale}/str-gws-actuals.png`] },
+    { key: "tab2", icon: "💰", featuresKey: "tab2Features", featureCount: 5, images: [`/visuals/${locale}/fin-gws-actuals.png`] },
+    {
+      key: "tab3",
+      icon: "🔗",
+      featuresKey: "tab3Features",
+      featureCount: 4,
+      images: [
+        `/visuals/${locale}/myadmin-functions.png`,
+        `/visuals/${locale}/str-bookings-by-country.png`,
+        `/visuals/${locale}/str-future-trend.png`,
+        `/visuals/${locale}/str-gws-violins.png`,
+      ],
+    },
+  ];
+}
 
 function ImageCarousel({ images, alt }: { images: string[]; alt: string }) {
   const [current, setCurrent] = useState(0);
@@ -114,8 +116,10 @@ function ImageCarousel({ images, alt }: { images: string[]; alt: string }) {
 
 export default function FeatureShowcase() {
   const t = useTranslations("FeatureShowcase");
+  const locale = useLocale();
   const [activeTab, setActiveTab] = useState(0);
 
+  const tabs = getTabs(locale);
   const currentTab = tabs[activeTab];
 
   return (

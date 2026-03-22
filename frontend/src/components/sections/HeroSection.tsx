@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import { trackEvent } from "@/lib/analytics";
@@ -15,6 +15,7 @@ const platformLogos = [
 
 export default function HeroSection() {
   const t = useTranslations("Hero");
+  const locale = useLocale();
 
   return (
     <section className="bg-off-white py-16 sm:py-20 lg:py-28">
@@ -52,7 +53,7 @@ export default function HeroSection() {
           {/* Dashboard visual */}
           <div className="flex items-center justify-center">
             <img
-              src="/visuals/myadmin-functions.png"
+              src={`/visuals/${locale}/myadmin-functions.png`}
               alt={t("heroImageAlt")}
               className="w-full max-w-lg rounded-2xl shadow-lg"
               width={600}
