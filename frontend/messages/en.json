@@ -335,7 +335,7 @@
     "emailRequired": "Email address is required",
     "emailInvalid": "Please enter a valid email address",
     "emailTooLong": "Email address is too long",
-    "emailExists": "An account with this email already exists.",
+    "emailExists": "You are already a registered user for myAdmin. Please contact <email>support@jabaki.nl</email> for assistance.",
     "emailExistsAction": "Log in instead →",
     "passwordRequired": "Password is required",
     "passwordMinLength": "Password must be at least 8 characters",

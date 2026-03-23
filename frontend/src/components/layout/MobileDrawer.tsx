@@ -35,8 +35,6 @@ export default function MobileDrawer({ locale, open, onClose }: MobileDrawerProp
   const [mounted, setMounted] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
 
-  const isSignupPage = pathname === "/signup";
-
   const navLinks = [
     { label: t("features"), href: "/#features" },
     { label: t("pricing"), href: "/pricing" },
@@ -213,23 +211,9 @@ export default function MobileDrawer({ locale, open, onClose }: MobileDrawerProp
 
         {/* Bottom CTA area */}
         <div className="border-t border-gray-100 px-4 py-6 sm:px-6">
-          {isSignupPage ? (
-            <Button href="https://app.myadmin.nl" variant="primary" size="md" className="w-full justify-center">
-              {t("logIn")}
-            </Button>
-          ) : (
-            <>
-              <Button href="/signup" variant="primary" size="md" className="w-full justify-center">
-                {t("startTrial")}
-              </Button>
-              <p className="mt-3 text-center text-sm text-gray-500">
-                {t("alreadyHaveAccount")}{" "}
-                <a href="https://app.myadmin.nl" className="font-medium text-brand-blue hover:text-deep-blue">
-                  {t("logInLink")}
-                </a>
-              </p>
-            </>
-          )}
+          <Button href="/signup" variant="primary" size="md" className="w-full justify-center">
+            {t("startTrial")}
+          </Button>
         </div>
       </div>
     </div>,

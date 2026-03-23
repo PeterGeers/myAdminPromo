@@ -203,7 +203,7 @@ export default function SignupForm({ onSuccess }: SignupFormProps) {
       }
 
       if (res.status === 409) {
-        setErrors({ email: v("emailExists") });
+        setServerError("emailExists");
         return;
       }
 
@@ -303,7 +303,15 @@ export default function SignupForm({ onSuccess }: SignupFormProps) {
           role="alert"
           className="mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
         >
-          {serverError}
+          {serverError === "emailExists"
+            ? v.rich("emailExists", {
+                email: (chunks) => (
+                  <a href="mailto:support@jabaki.nl" className="underline font-medium hover:text-red-900">
+                    {chunks}
+                  </a>
+                ),
+              })
+            : serverError}
         </div>
       )}
 
@@ -550,12 +558,7 @@ export default function SignupForm({ onSuccess }: SignupFormProps) {
       </button>
 
       {/* Already have an account */}
-      <p className="mt-4 text-center text-sm text-gray-500">
-        {t("alreadyHaveAccount")}{" "}
-        <Link href="/" className="font-medium text-brand-blue hover:text-deep-blue">
-          {t("logIn")}
-        </Link>
-      </p>
+      {/* Login link hidden until app is live — re-enable when app.myadmin.jabaki.nl is ready */}
     </form>
   );
 }

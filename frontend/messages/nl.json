@@ -335,7 +335,7 @@
     "emailRequired": "E-mailadres is verplicht",
     "emailInvalid": "Voer een geldig e-mailadres in",
     "emailTooLong": "E-mailadres is te lang",
-    "emailExists": "Er bestaat al een account met dit e-mailadres.",
+    "emailExists": "U bent al een geregistreerde gebruiker van myAdmin. Neem contact op met <email>support@jabaki.nl</email> voor hulp.",
     "emailExistsAction": "Log in →",
     "passwordRequired": "Wachtwoord is verplicht",
     "passwordMinLength": "Wachtwoord moet minimaal 8 tekens bevatten",

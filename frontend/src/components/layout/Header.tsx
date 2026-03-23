@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
-import { Link, usePathname } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
 import LanguageDropdown from "@/components/layout/LanguageDropdown";
@@ -11,7 +11,6 @@ import { trackEvent } from "@/lib/analytics";
 
 export default function Header({ locale }: { locale: string }) {
   const t = useTranslations("Header");
-  const pathname = usePathname();
 
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -21,8 +20,6 @@ export default function Header({ locale }: { locale: string }) {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const isSignupPage = pathname === "/signup";
 
   const navLinks = [
     { label: t("features"), href: "/#features" },
@@ -65,28 +62,16 @@ export default function Header({ locale }: { locale: string }) {
             <div className="flex items-center gap-3">
               <LanguageDropdown locale={locale} variant="light" />
 
-              {isSignupPage ? (
-                <Button
-                  href="https://app.myadmin.nl"
-                  variant="primary"
-                  size="sm"
-                  className="hidden sm:inline-flex"
-                  onClick={() => trackEvent("cta_click", { location: "nav", label: "log_in" })}
-                >
-                  {t("logIn")}
-                </Button>
-              ) : (
-                <Button
-                  href="/signup"
-                  variant="primary"
-                  size="sm"
-                  className="hidden sm:inline-flex"
-                  onClick={() => trackEvent("cta_click", { location: "nav", label: "start_trial" })}
-                >
-                  <span className="lg:hidden">{t("trial")}</span>
-                  <span className="hidden lg:inline">{t("startTrial")}</span>
-                </Button>
-              )}
+              <Button
+                href="/signup"
+                variant="primary"
+                size="sm"
+                className="hidden sm:inline-flex"
+                onClick={() => trackEvent("cta_click", { location: "nav", label: "start_trial" })}
+              >
+                <span className="lg:hidden">{t("trial")}</span>
+                <span className="hidden lg:inline">{t("startTrial")}</span>
+              </Button>
 
               <button
                 onClick={() => setDrawerOpen(true)}
