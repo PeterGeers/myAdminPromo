@@ -39,6 +39,7 @@ function DataTable({
 
 export default function TermsContent() {
   const t = useTranslations("TermsPage");
+  const p = useTranslations("Pricing");
 
   const tocItems = [
     { id: "definitions", label: t("toc1") },
@@ -115,9 +116,9 @@ export default function TermsContent() {
           <DataTable
             headers={[t("planHeader"), t("planPropertiesHeader"), t("planPriceHeader"), t("planBillingHeader")]}
             rows={[
-              [t("planStarter"), t("planStarterProps"), t("planStarterPrice"), t("planStarterBilling")],
-              [t("planPro"), t("planProProps"), t("planProPrice"), t("planProBilling")],
-              [t("planEnterprise"), t("planEnterpriseProps"), t("planEnterprisePrice"), t("planEnterpriseBilling")],
+              [p("starterName"), t("planStarterProps"), `€${p("starterPrice")}/${t("planPerMonth")}`, t("planStarterBilling")],
+              [p("professionalName"), t("planProProps"), `€${p("professionalPrice")}/${t("planPerMonth")}`, t("planProBilling")],
+              [p("enterpriseName"), t("planEnterpriseProps"), t("planEnterprisePrice"), t("planEnterpriseBilling")],
             ]}
           />
         </div>

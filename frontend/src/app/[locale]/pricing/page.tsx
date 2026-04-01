@@ -106,8 +106,8 @@ export default function PricingPage() {
         url: siteUrl,
         brand: { "@type": "Brand", name: "myAdmin" },
         offers: [
-          { "@type": "Offer", name: "Starter", price: "49", priceCurrency: "EUR", priceValidUntil: "2027-12-31", availability: "https://schema.org/InStock", url: `${siteUrl}/signup` },
-          { "@type": "Offer", name: "Professional", price: "99", priceCurrency: "EUR", priceValidUntil: "2027-12-31", availability: "https://schema.org/InStock", url: `${siteUrl}/signup` },
+          { "@type": "Offer", name: "Starter", price: t("starterPrice"), priceCurrency: "EUR", priceValidUntil: "2027-12-31", availability: "https://schema.org/InStock", url: `${siteUrl}/signup` },
+          { "@type": "Offer", name: "Professional", price: t("professionalPrice"), priceCurrency: "EUR", priceValidUntil: "2027-12-31", availability: "https://schema.org/InStock", url: `${siteUrl}/signup` },
           { "@type": "Offer", name: "Enterprise", price: "0", priceCurrency: "EUR", availability: "https://schema.org/InStock", url: `${siteUrl}/signup` },
         ],
       });
