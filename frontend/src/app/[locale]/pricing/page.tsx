@@ -5,45 +5,9 @@ import { useTranslations } from "next-intl";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import CTABanner from "@/components/sections/CTABanner";
+import { plans } from "@/lib/pricing-data";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://myadmin.jabaki.nl";
-
-/* ── Plan data ── */
-const plans = [
-  {
-    nameKey: "starterName",
-    descKey: "starterDescription",
-    priceKey: "starterPrice",
-    annualPriceKey: "starterAnnualPrice",
-    propsKey: "starterProperties",
-    features: ["starterFeature1", "starterFeature2", "starterFeature3", "starterFeature4", "starterFeature5"],
-    popular: false,
-    ctaKey: "startTrial",
-    ctaHref: "/signup",
-  },
-  {
-    nameKey: "professionalName",
-    descKey: "professionalDescription",
-    priceKey: "professionalPrice",
-    annualPriceKey: "professionalAnnualPrice",
-    propsKey: "professionalProperties",
-    features: ["professionalFeature1", "professionalFeature2", "professionalFeature3", "professionalFeature4", "professionalFeature5", "professionalFeature6", "professionalFeature7"],
-    popular: true,
-    ctaKey: "startTrial",
-    ctaHref: "/signup",
-  },
-  {
-    nameKey: "enterpriseName",
-    descKey: "enterpriseDescription",
-    priceKey: "enterprisePrice",
-    annualPriceKey: null,
-    propsKey: "enterpriseProperties",
-    features: ["enterpriseFeature1", "enterpriseFeature2", "enterpriseFeature3", "enterpriseFeature4", "enterpriseFeature5", "enterpriseFeature6"],
-    popular: false,
-    ctaKey: "contactUs",
-    ctaHref: "/signup",
-  },
-] as const;
 
 /* ── Add-ons ── */
 const addOns = [
@@ -67,8 +31,8 @@ const comparison: CompCategory[] = [
       { featureKey: "featurePricingInsights", starter: "included", professional: "included", enterprise: "included" },
       { featureKey: "featureRevenueAnalytics", starter: "included", professional: "included", enterprise: "included" },
       { featureKey: "featureChannelComparison", starter: "included", professional: "included", enterprise: "included" },
-      { featureKey: "featureGuestAnalytics", starter: "notIncluded", professional: "included", enterprise: "included" },
-      { featureKey: "featureCountryReports", starter: "notIncluded", professional: "included", enterprise: "included" },
+      { featureKey: "featureGuestAnalytics", starter: "included", professional: "included", enterprise: "included" },
+      { featureKey: "featureCountryReports", starter: "included", professional: "included", enterprise: "included" },
     ],
   },
   {
@@ -76,35 +40,34 @@ const comparison: CompCategory[] = [
     rows: [
       { featureKey: "featureBankImport", starter: "included", professional: "included", enterprise: "included" },
       { featureKey: "featureBasicReports", starter: "included", professional: "included", enterprise: "included" },
-      { featureKey: "featureAIInvoice", starter: "notIncluded", professional: "included", enterprise: "included" },
-      { featureKey: "featureFullPL", starter: "notIncluded", professional: "included", enterprise: "included" },
-      { featureKey: "featureGoogleDrive", starter: "notIncluded", professional: "included", enterprise: "included" },
-      { featureKey: "featureMultiYear", starter: "notIncluded", professional: "included", enterprise: "included" },
+      { featureKey: "featureAIInvoice", starter: "included", professional: "included", enterprise: "included" },
+      { featureKey: "featureFullPL", starter: "included", professional: "included", enterprise: "included" },
+      { featureKey: "featureGoogleDrive", starter: "included", professional: "included", enterprise: "included" },
+      { featureKey: "featureMultiYear", starter: "included", professional: "included", enterprise: "included" },
     ],
   },
   {
     categoryKey: "categoryTax",
     rows: [
-      { featureKey: "featureBTW", starter: "notIncluded", professional: "included", enterprise: "included" },
-      { featureKey: "featureIncomeTax", starter: "notIncluded", professional: "included", enterprise: "included" },
-      { featureKey: "featureTouristTax", starter: "notIncluded", professional: "included", enterprise: "included" },
-      { featureKey: "featureAuditTrail", starter: "notIncluded", professional: "included", enterprise: "included" },
+      { featureKey: "featureBTW", starter: "included", professional: "included", enterprise: "included" },
+      { featureKey: "featureIncomeTax", starter: "included", professional: "included", enterprise: "included" },
+      { featureKey: "featureTouristTax", starter: "included", professional: "included", enterprise: "included" },
+      { featureKey: "featureAuditTrail", starter: "included", professional: "included", enterprise: "included" },
     ],
   },
   {
     categoryKey: "categoryPlatform",
     rows: [
-      { featureKey: "featureUsers", starter: "1", professional: "1", enterprise: "unlimited" },
+      { featureKey: "featureUsers", starter: "2", professional: "4", enterprise: "TBD" },
       { featureKey: "featureAPI", starter: "notIncluded", professional: "notIncluded", enterprise: "included" },
       { featureKey: "featureWhiteLabel", starter: "notIncluded", professional: "notIncluded", enterprise: "included" },
-      { featureKey: "featureAccountantAccess", starter: "free", professional: "free", enterprise: "free" },
+      { featureKey: "featureAccountantAccess", starter: "1", professional: "1", enterprise: "TBD" },
     ],
   },
   {
     categoryKey: "categorySupport",
     rows: [
       { featureKey: "featureEmailSupport", starter: "included", professional: "included", enterprise: "included" },
-      { featureKey: "featurePrioritySupport", starter: "notIncluded", professional: "included", enterprise: "included" },
       { featureKey: "featureDedicatedSupport", starter: "notIncluded", professional: "notIncluded", enterprise: "included" },
     ],
   },

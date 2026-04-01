@@ -177,9 +177,6 @@ export default function FeatureShowcase() {
                 </li>
               ))}
             </ul>
-            <p className="mt-8 text-sm font-semibold text-brand-blue cursor-pointer hover:underline">
-              {t("learnMore")}
-            </p>
           </div>
 
           {/* Screenshot / Carousel */}

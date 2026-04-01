@@ -5,42 +5,7 @@ import { useTranslations } from "next-intl";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { trackEvent } from "@/lib/analytics";
-
-const plans = [
-  {
-    nameKey: "starterName",
-    descKey: "starterDescription",
-    priceKey: "starterPrice",
-    annualPriceKey: "starterAnnualPrice",
-    propsKey: "starterProperties",
-    features: ["starterFeature1", "starterFeature2", "starterFeature3", "starterFeature4", "starterFeature5"],
-    popular: false,
-    ctaKey: "startTrial",
-    ctaHref: "/signup",
-  },
-  {
-    nameKey: "professionalName",
-    descKey: "professionalDescription",
-    priceKey: "professionalPrice",
-    annualPriceKey: "professionalAnnualPrice",
-    propsKey: "professionalProperties",
-    features: ["professionalFeature1", "professionalFeature2", "professionalFeature3", "professionalFeature4", "professionalFeature5", "professionalFeature6", "professionalFeature7"],
-    popular: true,
-    ctaKey: "startTrial",
-    ctaHref: "/signup",
-  },
-  {
-    nameKey: "enterpriseName",
-    descKey: "enterpriseDescription",
-    priceKey: "enterprisePrice",
-    annualPriceKey: null,
-    propsKey: "enterpriseProperties",
-    features: ["enterpriseFeature1", "enterpriseFeature2", "enterpriseFeature3", "enterpriseFeature4", "enterpriseFeature5", "enterpriseFeature6"],
-    popular: false,
-    ctaKey: "contactUs",
-    ctaHref: "/signup",
-  },
-] as const;
+import { plans } from "@/lib/pricing-data";
 
 export default function PricingSection() {
   const t = useTranslations("Pricing");

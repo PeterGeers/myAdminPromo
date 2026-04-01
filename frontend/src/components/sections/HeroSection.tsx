@@ -36,12 +36,9 @@ export default function HeroSection() {
               {t("subtitle")}
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Button href="/signup" variant="primary" size="lg" onClick={() => trackEvent("cta_click", { location: "hero", label: "start_trial" })}>
                 {t("primaryCta")}
-              </Button>
-              <Button href="/#features" variant="secondary" size="lg" onClick={() => trackEvent("cta_click", { location: "hero", label: "see_features" })}>
-                {t("secondaryCta")}
               </Button>
             </div>
 
