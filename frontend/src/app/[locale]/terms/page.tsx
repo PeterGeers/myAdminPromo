@@ -18,6 +18,9 @@ export async function generateMetadata({ params }: Props) {
       canonical: url,
       languages: { nl: `${siteUrl}/nl/terms`, en: `${siteUrl}/en/terms` },
     },
+    openGraph: {
+      url,
+    },
   };
 }
 
